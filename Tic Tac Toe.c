@@ -1,15 +1,4 @@
 
-None selected 
-
-Skip to content
-Using Gmail with screen readers
-Enable desktop notifications for Gmail.
-   OK  No thanks
-Conversations
-4.18 GB of 15 GB used
-Terms · Privacy · Program Policies
-Last account activity: 37 minutes ago
-Details
 #include <stdio.h>
 #include <string.h>
 #include <stdlib.h>
