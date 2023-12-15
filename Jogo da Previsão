@@ -29,10 +29,10 @@ int last(int a, char data[4][3][20]){
 
 void thelast(char winner[4][20], int a, char data[4][3][20]){
     for (int i = 0; i < 3; i++){ //testar as tres posicoes
-        if (data[a][i] != "-"){
+        if (data[a][i] != "--"){
             strcpy (winner[a], data[a][i]);
-            strcpy (data[a][i], "-");
-            printf("%s",data[a][i]);
+            strcpy (data[a][i], "--");
+            printf("final: %s\n",data[a][i]);
     	}
     }
 }
@@ -65,14 +65,16 @@ int main (){
 
     char winner[4][20];
 
-    int a = 0, b = 0, doze = 0;	//stop will stop the looping when count=n; a and b will run the char data;
+    int doze = 0;
+    int a = 0, b = 0;	//stop will stop the looping when count=n; a and b will run the char data;
     
     while(doze<12){
+        
         for (int count = 0; count < n;){	//this will be counting n times.
     
          //printf("BBB: ");
     
-        if (data[a][b] != "-"){	//testa se existe dados no vetor.
+        if (data[a][b] != "--"){	//testa se existe dados no vetor.
     	    count++;//se existe dados entC#o a contagem C) valida.
     	    printf ("a: %d, b: %d, %s\n", a, b, data[a][b]);
     	}
@@ -81,11 +83,11 @@ int main (){
     	    //printf("CCC");
     	    if (last (a, data) == 0){
     	        printf ("Eliminado: %s\n", data[a][b]);
-    	        strcpy (data[a][b], "-");
+    	        strcpy (data[a][b], "--");
     	    }
     	    else if (last (a, data) == 1){
     	        printf ("Eliminado: %s\n", data[a][b]);
-    	        strcpy (data[a][b], "-");
+    	        strcpy (data[a][b], "--");
     	        thelast(winner, a, data);
     	    }
     	}
