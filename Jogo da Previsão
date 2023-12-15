@@ -15,7 +15,7 @@ int last(int a, char data[4][3][20]){
     	    aux++;
     	}
     }
-    printf("aux: %d\n",aux);
+    //printf("aux: %d\n",aux);
     
     if (aux == 3){
         res = 0;
@@ -23,19 +23,19 @@ int last(int a, char data[4][3][20]){
     else{
         res = 1;
     }
-    printf("res: %d\n",res);
+    //printf("res: %d\n",res);
     return res;
 }
 
 void thelast(char winner[4][20], int a, char data[4][3][20]){
     
-    printf("Test2");
+    //printf("Test2");
     
     for (int i = 0; i < 3; i++){ //testar as tres posicoes
         if (strcmp(data[a][i],"--") != 0){
             strcpy (winner[a], data[a][i]);
             strcpy (data[a][i], "--");
-            printf("final: %s\n",data[a][i]);
+            //printf("final: %s\n",data[a][i]);
     	}
     }
 }
@@ -81,7 +81,7 @@ int main (){
     
         if (strcmp(data[a][b],"--") != 0){	//testa se existe dados no vetor.
     	    count++;//se existe dados entao a contagem eh valida.
-    	    printf ("a: %d, b: %d, %s\n", a, b, data[a][b]);
+    	    //printf ("a: %d, b: %d, %s\n", a, b, data[a][b]);
     	}
     
         if (count == n){ //ultimo da contagem
