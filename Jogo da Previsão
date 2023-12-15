@@ -1,40 +1,89 @@
+
 #include<stdio.h>
 #include<string.h>
 #include<stdlib.h>
 #include<unistd.h>
 
+int last(int a,char data[4][3][20]){
+    int res,aux=0;
+    
+    printf("TEST1");
+    
+    for(int i=0;i<3;i++){ //testar as tres posicoes
+        if(data[a][i]!="-"){
+            aux++;   
+        }
+    }
+    if(aux==3){
+        res==0;
+    }
+    else{
+        res==1;
+    }
+    printf("")
+    return res;
+}
+
+
+
+
 int main(){
 int n;
-char data[12][20];
+char data [4][3][20];
 
-printf("Escolha três pretendentes: ");
+printf("Escolha três pretendentes: \n");
 for(int i=0;i<3;i++){
-    scanf(" %[19\n]",data[i]);
+    printf("%d: ",i+1);
+    scanf(" %19[^\n]",data[3][i]);
 }
 
-printf("Escolha três cidades: ");
-for(int i=3;i<6;i++){
-    scanf(" %[19\n]",data[i]);
+printf("Escolha três cidades: \n");
+for(int i=0;i<3;i++){
+    printf("%d: ",i+1);
+    scanf(" %19[^\n]",data[1][i]);
 }
 
-printf("Com qual idade, você vai casar? (Entre 18 á 50");
+printf("Com qual idade, você vai casar?\n");
 scanf("%d",&n);
 
-strcpy(data[6],"pobre");
-strcpy(data[7],"rico");
-strcpy(data[8],"milionário");
-strcpy(data[9],"um filho");
-strcpy(data[10],"dois filhos");
-strcpy(data[11],"três filhos");
+strcpy(data[2][0],"pobre");
+strcpy(data[2][1],"rico");
+strcpy(data[2][2],"milionário");
+strcpy(data[0][0],"um filho");
+strcpy(data[0][1],"dois filhos");
+strcpy(data[0][2],"três filhos");
 
 char winner[4][20];
-int count=0;
 
-for(int a=0;a<(50-n);a++){//principal
-    int i=0;
-   
-   
-    counter++
+int a=0, b=0; //stop will stop the looping when count=n; a and b will run the char data;
+for(int count=0;count<n;){ //this will be counting n times.
+    
+    //printf("BBB: ");
+    
+    if(data[a][b]!="-"){ //testa se existe dados no vetor.
+        count++; //se existe dados então a contagem é valida.
+        printf("a: %d, b: %d\n",a,b);
+    }
+    
+    if(count==n){ //ultimo da contagem
+    //printf("CCC");
+        if(last(a,data)==0){
+            printf("Okay");
+        }
+       
+    }
+    
+    
+    b++;
+    if(b==3){
+        b=0;
+        a++;
+    }
+    if(a==4){
+        a=0;
+    }
 }
+
+
 return 0;
 }
