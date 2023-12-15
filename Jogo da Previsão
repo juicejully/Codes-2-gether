@@ -11,11 +11,11 @@ int last(int a, char data[4][3][20]){
     //printf("TEST1");
     
     for (int i = 0; i < 3; i++){ //testar as tres posicoes
-        if (data[a][i] != "-"){
+        if (strcmp(data[a][i],"--") != 0){
     	    aux++;
     	}
     }
-    //printf("aux: %d",aux);
+    printf("aux: %d\n",aux);
     
     if (aux == 3){
         res = 0;
@@ -23,13 +23,16 @@ int last(int a, char data[4][3][20]){
     else{
         res = 1;
     }
-    //printf("res: %d",res);
+    printf("res: %d\n",res);
     return res;
 }
 
 void thelast(char winner[4][20], int a, char data[4][3][20]){
+    
+    printf("Test2");
+    
     for (int i = 0; i < 3; i++){ //testar as tres posicoes
-        if (data[a][i] != "--"){
+        if (strcmp(data[a][i],"--") != 0){
             strcpy (winner[a], data[a][i]);
             strcpy (data[a][i], "--");
             printf("final: %s\n",data[a][i]);
@@ -68,14 +71,16 @@ int main (){
     int doze = 0;
     int a = 0, b = 0;	//stop will stop the looping when count=n; a and b will run the char data;
     
-    while(doze<12){
+    while(doze<8){
         
         for (int count = 0; count < n;){	//this will be counting n times.
     
-         //printf("BBB: ");
+        //printf("BBB: ");
+         
+        //printf("%s\n",data[a][b]);
     
-        if (data[a][b] != "--"){	//testa se existe dados no vetor.
-    	    count++;//se existe dados entC#o a contagem C) valida.
+        if (strcmp(data[a][b],"--") != 0){	//testa se existe dados no vetor.
+    	    count++;//se existe dados entao a contagem eh valida.
     	    printf ("a: %d, b: %d, %s\n", a, b, data[a][b]);
     	}
     
@@ -102,6 +107,7 @@ int main (){
         }
         doze++;
     }
+    printf("Voce vai casar com %s e morar em %s. Terão %s e serão %s.",winner[3],winner[1],winner[0],winner[2]);
 
 
     return 0;
