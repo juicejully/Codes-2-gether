@@ -1,0 +1,40 @@
+#include<stdio.h>
+#include<string.h>
+#include<stdlib.h>
+#include<unistd.h>
+
+int main(){
+int n;
+char data[12][20];
+
+printf("Escolha três pretendentes: ");
+for(int i=0;i<3;i++){
+    scanf(" %[19\n]",data[i]);
+}
+
+printf("Escolha três cidades: ");
+for(int i=3;i<6;i++){
+    scanf(" %[19\n]",data[i]);
+}
+
+printf("Com qual idade, você vai casar? (Entre 18 á 50");
+scanf("%d",&n);
+
+strcpy(data[6],"pobre");
+strcpy(data[7],"rico");
+strcpy(data[8],"milionário");
+strcpy(data[9],"um filho");
+strcpy(data[10],"dois filhos");
+strcpy(data[11],"três filhos");
+
+char winner[4][20];
+int count=0;
+
+for(int a=0;a<(50-n);a++){//principal
+    int i=0;
+   
+   
+    counter++
+}
+return 0;
+}
