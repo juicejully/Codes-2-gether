@@ -73,22 +73,51 @@ void hor2same(int *erro4, int *auxx,char ttt[9][3],struct players p[2]){
     
     //printf("ERRO1");
     
+    //computing can win?
     for(int i=0;i<9;i+=3){
-        if(strcmp(ttt[i],ttt[i+1]) == 0 && strcmp(ttt[2+i],p[1].opc) != 0 && strcmp(ttt[2+i],p[0].opc) != 0){
+        if(strcmp(ttt[i],p[1].opc) == 0 && strcmp(ttt[i],ttt[i+1]) == 0 && strcmp(ttt[2+i],p[1].opc) != 0 && strcmp(ttt[2+i],p[0].opc) != 0){
                             
             strcpy(ttt[2+i],p[1].opc);
             *erro4=1;
             *auxx=0;
+            i=10;
         }
-        else if(strcmp(ttt[i+1],ttt[i+2]) == 0 && strcmp(ttt[0+i],p[1].opc) != 0 && strcmp(ttt[0+i],p[0].opc) != 0){
+        else if(strcmp(ttt[i+1],p[1].opc) == 0 && strcmp(ttt[i+1],ttt[i+2]) == 0 && strcmp(ttt[0+i],p[1].opc) != 0 && strcmp(ttt[0+i],p[0].opc) != 0){
             strcpy(ttt[0+i],p[1].opc);
             *erro4=1;
             *auxx=0;
+            i=10;
         }
-        else if(strcmp(ttt[i],ttt[i+2]) == 0 && strcmp(ttt[1+i],p[1].opc) != 0 && strcmp(ttt[1+i],p[0].opc) != 0){
+        else if(strcmp(ttt[i],p[1].opc) == 0 && strcmp(ttt[i],ttt[i+2]) == 0 && strcmp(ttt[1+i],p[1].opc) != 0 && strcmp(ttt[1+i],p[0].opc) != 0){
             strcpy(ttt[1+i],p[1].opc);
             *erro4=1;
             *auxx=0;
+            i=10;
+        }
+    }
+    
+    //player can win?
+    if(*erro4==0){
+        for(int i=0;i<9;i+=3){
+            if(strcmp(ttt[i],p[0].opc) == 0 && strcmp(ttt[i],ttt[i+1]) == 0 && strcmp(ttt[2+i],p[1].opc) != 0 && strcmp(ttt[2+i],p[0].opc) != 0){
+                                
+                strcpy(ttt[2+i],p[1].opc);
+                *erro4=1;
+                *auxx=0;
+                i=10;
+            }
+            else if(strcmp(ttt[i+1],p[0].opc) == 0 && strcmp(ttt[i+1],ttt[i+2]) == 0 && strcmp(ttt[0+i],p[1].opc) != 0 && strcmp(ttt[0+i],p[0].opc) != 0){
+                strcpy(ttt[0+i],p[1].opc);
+                *erro4=1;
+                *auxx=0;
+                i=10;
+            }
+            else if(strcmp(ttt[i],p[0].opc) == 0 && strcmp(ttt[i],ttt[i+2]) == 0 && strcmp(ttt[1+i],p[1].opc) != 0 && strcmp(ttt[1+i],p[0].opc) != 0){
+                strcpy(ttt[1+i],p[1].opc);
+                *erro4=1;
+                *auxx=0;
+                i=10;
+            }
         }
     }
     
@@ -97,21 +126,51 @@ void hor2same(int *erro4, int *auxx,char ttt[9][3],struct players p[2]){
 void vert2same(int *erro4, int *auxx,char ttt[9][3],struct players p[2]){
     
     //printf("ERRO2");
+    
+    //computer can win?
     for(int i=0;i<3;i++){
-        if(strcmp(ttt[i],ttt[i+3]) == 0 && strcmp(ttt[6+i],p[1].opc) != 0 && strcmp(ttt[6+i],p[0].opc) != 0){
+        if(strcmp(ttt[i],p[1].opc) == 0 && strcmp(ttt[i],ttt[i+3]) == 0 && strcmp(ttt[6+i],p[1].opc) != 0 && strcmp(ttt[6+i],p[0].opc) != 0){
             strcpy(ttt[6+i],p[1].opc);
             *erro4=1;
             *auxx=0;
+            i=10;
         }
-        else if(strcmp(ttt[i],ttt[i+6]) == 0 && strcmp(ttt[3+i],p[1].opc) != 0 && strcmp(ttt[3+i],p[0].opc) != 0){
+        else if(strcmp(ttt[i],p[1].opc) == 0 && strcmp(ttt[i],ttt[i+6]) == 0 && strcmp(ttt[3+i],p[1].opc) != 0 && strcmp(ttt[3+i],p[0].opc) != 0){
             strcpy(ttt[3+i],p[1].opc);
             *erro4=1;
             *auxx=0;
+            i=10;
         }
-        else if(strcmp(ttt[i+3],ttt[i+6]) == 0 && strcmp(ttt[0+i],p[1].opc) != 0 && strcmp(ttt[0+i],p[0].opc) != 0){
+        else if(strcmp(ttt[i+3],p[1].opc) == 0 && strcmp(ttt[i+3],ttt[i+6]) == 0 && strcmp(ttt[0+i],p[1].opc) != 0 && strcmp(ttt[0+i],p[0].opc) != 0){
             strcpy(ttt[0+i],p[1].opc);
             *erro4=1;
             *auxx=0;
+            i=10;
+        }
+    }
+    
+    //player can win?
+    if(*erro4==0){
+        
+        for(int i=0;i<3;i++){
+            if(strcmp(ttt[i],p[0].opc) == 0 && strcmp(ttt[i],ttt[i+3]) == 0 && strcmp(ttt[6+i],p[1].opc) != 0 && strcmp(ttt[6+i],p[0].opc) != 0){
+                strcpy(ttt[6+i],p[1].opc);
+                *erro4=1;
+                *auxx=0;
+                i=10;
+            }
+            else if(strcmp(ttt[i],p[0].opc) == 0 && strcmp(ttt[i],ttt[i+6]) == 0 && strcmp(ttt[3+i],p[1].opc) != 0 && strcmp(ttt[3+i],p[0].opc) != 0){
+                strcpy(ttt[3+i],p[1].opc);
+                *erro4=1;
+                *auxx=0;
+                i=10;
+            }
+            else if(strcmp(ttt[i+3],p[0].opc) == 0 && strcmp(ttt[i+3],ttt[i+6]) == 0 && strcmp(ttt[0+i],p[1].opc) != 0 && strcmp(ttt[0+i],p[0].opc) != 0){
+                strcpy(ttt[0+i],p[1].opc);
+                *erro4=1;
+                *auxx=0;
+                i=10;
+            }
         }
     }
 }
@@ -119,21 +178,50 @@ void vert2same(int *erro4, int *auxx,char ttt[9][3],struct players p[2]){
 void diag2same(int *erro4, int *auxx,char ttt[9][3],struct players p[2]){
     
     //printf("ERRO3");
+    
+    //computer can win?
     for(int i=0;i<3;i+=2){
-        if(strcmp(ttt[i],ttt[4]) == 0 && strcmp(ttt[8-i],p[1].opc) != 0 && strcmp(ttt[8-i],p[0].opc) != 0){
+        if(strcmp(ttt[i],p[1].opc) == 0 && strcmp(ttt[i],ttt[4]) == 0 && strcmp(ttt[8-i],p[1].opc) != 0 && strcmp(ttt[8-i],p[0].opc) != 0){
             strcpy(ttt[8-i],p[1].opc);
             *erro4=1;
             *auxx=0;
+            i=10;
         }
-        else if(strcmp(ttt[4],ttt[8-i]) == 0 && strcmp(ttt[i],p[1].opc) != 0 && strcmp(ttt[i],p[0].opc) != 0){
+        else if(strcmp(ttt[4],p[1].opc) == 0 && strcmp(ttt[4],ttt[8-i]) == 0 && strcmp(ttt[i],p[1].opc) != 0 && strcmp(ttt[i],p[0].opc) != 0){
             strcpy(ttt[i],p[1].opc);
             *erro4=1;
             *auxx=0;
+            i=10;
         }
-        else if(strcmp(ttt[i],ttt[8-i]) == 0 && strcmp(ttt[4],p[1].opc) != 0 && strcmp(ttt[4],p[0].opc) != 0){
+        else if(strcmp(ttt[i],p[1].opc) == 0 && strcmp(ttt[i],ttt[8-i]) == 0 && strcmp(ttt[4],p[1].opc) != 0 && strcmp(ttt[4],p[0].opc) != 0){
             strcpy(ttt[4],p[1].opc);
             *erro4=1;
             *auxx=0;
+            i=10;
+        }
+    }
+    
+    //player can win?
+    if(*erro4==0){
+        for(int i=0;i<3;i+=2){
+            if(strcmp(ttt[i],p[0].opc) == 0 && strcmp(ttt[i],ttt[4]) == 0 && strcmp(ttt[8-i],p[1].opc) != 0 && strcmp(ttt[8-i],p[0].opc) != 0){
+                strcpy(ttt[8-i],p[1].opc);
+                *erro4=1;
+                *auxx=0;
+                i=10;
+            }
+            else if(strcmp(ttt[4],p[0].opc) == 0 && strcmp(ttt[4],ttt[8-i]) == 0 && strcmp(ttt[i],p[1].opc) != 0 && strcmp(ttt[i],p[0].opc) != 0){
+                strcpy(ttt[i],p[1].opc);
+                *erro4=1;
+                *auxx=0;
+                i=10;
+            }
+            else if(strcmp(ttt[i],p[0].opc) == 0 && strcmp(ttt[i],ttt[8-i]) == 0 && strcmp(ttt[4],p[1].opc) != 0 && strcmp(ttt[4],p[0].opc) != 0){
+                strcpy(ttt[4],p[1].opc);
+                *erro4=1;
+                *auxx=0;
+                i=10;
+            }
         }
     }
 }
@@ -371,27 +459,32 @@ void onePlayerHard(struct players p[2]){
             printf("Computador jogando...\n");
             playing++;
             
+            printf("erro41: %d\n",erro4);
             //hor 2same
             if(erro4==0){
                 hor2same(&erro4,&auxx,ttt,p);
             }
-                    
+            
+            printf("erro42: %d\n",erro4);        
             //vert 2same
             if(erro4==0){
                 vert2same(&erro4,&auxx,ttt,p);        
             }
-                    
+            
+            printf("erro43: %d\n",erro4);        
             //dia 2same
             if(erro4==0){
                 diag2same(&erro4,&auxx,ttt,p);       
             }
-                    
+            
+            printf("erro44: %d\n",erro4);        
             //not 2same
             if(erro4==0){
                 not2same(&erro4,&auxx,ttt,p);        
                     
             }
             
+            printf("erro45: %d\n",erro4);
             //printf("\033[H\033[J");
             
             //ganhou?
@@ -560,5 +653,7 @@ int main() {
     
 return 0;
 }
+
+
 
 
