@@ -71,7 +71,7 @@ void printar(char ttt[9][3],struct players p[2]){
 
 void hor2same(int *erro4, int *auxx,char ttt[9][3],struct players p[2]){
     
-    printf("ERRO1");
+    //printf("ERRO1");
     
     for(int i=0;i<9;i+=3){
         if(strcmp(ttt[i],ttt[i+1]) == 0 && strcmp(ttt[2+i],p[1].opc) != 0 && strcmp(ttt[2+i],p[0].opc) != 0){
@@ -96,7 +96,7 @@ void hor2same(int *erro4, int *auxx,char ttt[9][3],struct players p[2]){
 
 void vert2same(int *erro4, int *auxx,char ttt[9][3],struct players p[2]){
     
-    printf("ERRO2");
+    //printf("ERRO2");
     for(int i=0;i<3;i++){
         if(strcmp(ttt[i],ttt[i+3]) == 0 && strcmp(ttt[6+i],p[1].opc) != 0 && strcmp(ttt[6+i],p[0].opc) != 0){
             strcpy(ttt[6+i],p[1].opc);
@@ -118,7 +118,7 @@ void vert2same(int *erro4, int *auxx,char ttt[9][3],struct players p[2]){
 
 void diag2same(int *erro4, int *auxx,char ttt[9][3],struct players p[2]){
     
-    printf("ERRO3");
+    //printf("ERRO3");
     for(int i=0;i<3;i+=2){
         if(strcmp(ttt[i],ttt[4]) == 0 && strcmp(ttt[8-i],p[1].opc) != 0 && strcmp(ttt[8-i],p[0].opc) != 0){
             strcpy(ttt[8-i],p[1].opc);
@@ -140,7 +140,7 @@ void diag2same(int *erro4, int *auxx,char ttt[9][3],struct players p[2]){
 
 void not2same(int *erro4, int *auxx,char ttt[9][3],struct players p[2]){
     
-    printf("ERRO4");
+    //printf("ERRO4");
     if(strcmp("b2",ttt[4]) == 0){
         strcpy(ttt[4], p[1].opc);
         *auxx=0;
