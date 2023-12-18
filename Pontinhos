@@ -266,6 +266,9 @@ int main()
                 erro2=0;//reset 
                 
                 markpoint(n,game,player,&turn);
+
+                printf("\033[H\033[J");
+
                 basicprint(n,game);
                 
                 // troca de jogador
