@@ -1,0 +1,68 @@
+#include <stdio.h>
+#include <string.h>
+
+int main()
+{
+    char nameAux[100];
+    printf("Escolha uma palavra:\n");
+    scanf(" %s",nameAux);
+    int n = strlen(nameAux);
+    char name[n+1];
+    strcpy(name,nameAux);
+    //printf("%s - %d",name,n);
+    char secret[n+1];
+    for(int i=0;i<n;i++){
+        secret[i]='-';
+    }
+    secret[n] = '\0';
+    
+    printf("A palavra secreta é:\n%s\n",secret);
+    
+    char guess[n+1];
+    
+    int erro=0,N;
+    while(erro==0){
+        printf("Tente adivinhar a palavra:\n");
+        scanf(" %s",guess);
+    
+        N = strlen(guess);
+        
+        erro=1;
+    
+        // Check if the length is within bounds
+        if (N != n){
+            printf("A palavra deve conter %d letras.\n",n);
+            erro=0;
+        }
+    }
+    
+    if(N==n){
+        
+        for(int i=0;i<=n;i++){
+            if(name[i]==guess[i]){
+                printf("\033[32m");
+                printf("%c",guess[i]);
+                printf("\033[0m");
+            }
+            else{
+                int has=0;
+                for(int a=0;a<=n;a++){
+                    if(guess[i]==name[a] && guess[i]!=name[i]){
+                        printf("\033[33m");
+                        printf("%c",guess[i]);
+                        printf("\033[0m");
+                        has=1;
+                        a=(n+1);
+                    }
+                }
+                if(has==0){
+                    printf("%c",guess[i]);
+                }
+            }
+        }
+        printf("\n");
+    }
+
+    
+    return 0;
+}
