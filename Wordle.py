@@ -18,7 +18,7 @@ class GuessingGame(QWidget):
 		self.setWindowTitle("TERMO") #nome do jogo
 		self.setStyleSheet("""
 			QWidget{
-				background-color: #312B2D;
+				background-color: #6F5C62;
 				color: white;
 			}
 			QLabel.warning{
@@ -28,12 +28,13 @@ class GuessingGame(QWidget):
 				font-size: 50px;
 				font-weight: bold;
 				color: white;
-				background-color: #312B2D;
+				background-color: #6F5C62;
 				border: 5px solid #4C4346;
 				border-radius: 10px;
 				width: 80px;
 				height: 80px;
-				text-align: center;
+				text-align: center
+				
 			}
 		""")
 		
@@ -47,6 +48,7 @@ class GuessingGame(QWidget):
 		for i in range(5): #pede 5 letras
 			self.line_edit = QLineEdit() #uma letras por vez
 			self.line_edit.setMaxLength(1) #apenas uma letra
+			self.line_edit.setAlignment(Qt.AlignCenter)
 			self.Inputlayout.addWidget(self.line_edit) 
 			self.letters_boxes.append(self.line_edit) #vai juntando as letras
 			self.line_edit.textChanged.connect(self.onTextChanged) #verifica se colocou a letra
@@ -93,13 +95,21 @@ class GuessingGame(QWidget):
 	def updateGuess(self, text): #forma a palavra que é a tentativa de advinhar
 		self.guess = "".join(line_edit.text() for line_edit in self.letters_boxes)
 		
-	def eventFilter(self, obj, event): #eventos
-		if event.type() == QEvent.KeyPress: 
-			if event.key() == Qt.Key_Backspace: 
-				current_index = self.letters_boxes.index(obj)
+	def eventFilter(self, obj, event):
+		if event.type() == QEvent.KeyPress:
+			current_index = self.letters_boxes.index(obj)
+			if event.key() == Qt.Key_Backspace:
 				if current_index > 0 and obj.text() == "":
 					self.letters_boxes[current_index - 1].setFocus()
 					self.letters_boxes[current_index - 1].clear()
+					return True  # Event handled
+			elif event.key() == Qt.Key_Left:
+				if current_index > 0:
+					self.letters_boxes[current_index - 1].setFocus()
+					return True  # Event handled
+			elif event.key() == Qt.Key_Right:
+				if current_index < len(self.letters_boxes) - 1:
+					self.letters_boxes[current_index + 1].setFocus()
 					return True  # Event handled
 			elif event.key() == Qt.Key_Return and obj.hasFocus():
 				self.check_guess()
@@ -123,7 +133,7 @@ class GuessingGame(QWidget):
 		for i in range(len(self.secret_word)):
 			if self.secret_word[i] == guess[i]:
 				guess[i] = "*" #(vai ser verde)
-				correct += 1 #se for igaul retira da ADVINHA
+				correct += 1 #se for igual retira da ADVINHA
 			else:
 				has = 0
 				for t in range(len(self.secret_word)):
@@ -140,11 +150,11 @@ class GuessingGame(QWidget):
 			button.setStyleSheet('font-size: 50px; font-weight: bold; color: white; background-color: '
 								 + ('rgb(58, 163, 148)' if guess[i] == "*" 
 									else '#D4AD6A' if guess[i] == "-" 
-									else '#312B2D')
+									else '#302A2C')
 								 + '; border: ' 
 								 + ('5px solid rgb(58, 163, 148)' if guess[i] == "*" 
 									else '5px solid #D4AD6A' if guess[i] == "-" 
-									else '5px solid #4C4346') 
+									else '5px solid #302A2C') 
 								 + '; border-radius: 10px; width: 80px; height: 80px; ')
 
 			self.Letterlayout.addWidget(button)
