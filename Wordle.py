@@ -42,17 +42,16 @@ class GuessingGame(QWidget):
 		
 		self.letters_boxes = [] #recebe todas as letras
 		self.Inputlayout = QHBoxLayout() #na horizontal para as 5 letras
-		self.prev_widget = None
-		self.next_widget = None
+
 		
 		for i in range(5): #pede 5 letras
 			self.line_edit = QLineEdit() #uma letras por vez
-			self.line_edit.setMaxLength(1)
-			self.Inputlayout.addWidget(self.line_edit)
+			self.line_edit.setMaxLength(1) #apenas uma letra
+			self.Inputlayout.addWidget(self.line_edit) 
 			self.letters_boxes.append(self.line_edit) #vai juntando as letras
-			self.line_edit.textChanged.connect(self.onTextChanged)
-			self.line_edit.textChanged.connect(self.updateGuess)
-			self.line_edit.installEventFilter(self)
+			self.line_edit.textChanged.connect(self.onTextChanged) #verifica se colocou a letra
+			self.line_edit.textChanged.connect(self.updateGuess) #vai formando as palavras
+			self.line_edit.installEventFilter(self) #eventos
 			
 			
 		self.setLayout(self.layout) #colocando como principal    
@@ -86,18 +85,25 @@ class GuessingGame(QWidget):
 
 		self.layout.addLayout(self.Guesslayout) #add o guess(tentativas) ao layout principal
 		
-	def onTextChanged(self, text):
+	def onTextChanged(self, text): #se coloca uma letra move automaticamente para o lado
 		current_index = self.letters_boxes.index(self.sender())
 		if len(text) == 1 and current_index < len(self.letters_boxes) - 1:
 			self.letters_boxes[current_index + 1].setFocus()
 		
-	def updateGuess(self, text):
+	def updateGuess(self, text): #forma a palavra que é a tentativa de advinhar
 		self.guess = "".join(line_edit.text() for line_edit in self.letters_boxes)
 		
-	def eventFilter(self, obj, event):
-		if event.type() == QEvent.KeyPress and obj is self.line_edit:
-			if event.key() == Qt.Key_Return and self.line_edit.hasFocus():
+	def eventFilter(self, obj, event): #eventos
+		if event.type() == QEvent.KeyPress: 
+			if event.key() == Qt.Key_Backspace: 
+				current_index = self.letters_boxes.index(obj)
+				if current_index > 0 and obj.text() == "":
+					self.letters_boxes[current_index - 1].setFocus()
+					self.letters_boxes[current_index - 1].clear()
+					return True  # Event handled
+			elif event.key() == Qt.Key_Return and obj.hasFocus():
 				self.check_guess()
+				return True  # Event handled
 		return super().eventFilter(obj, event)
 			
 			
